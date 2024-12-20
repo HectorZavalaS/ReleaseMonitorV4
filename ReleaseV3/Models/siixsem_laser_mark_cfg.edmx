@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="siixsem_laser_mark_cfgModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="getLaserMark" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idLS" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getLaserMarkByDesc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DESCR" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getLMParameters" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="lm" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getReleasePath" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idLM" Type="int" Mode="In" />
+        </Function>
+        <Function Name="setTaskToLM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idlm" Type="int" Mode="In" />
+          <Parameter Name="task" Type="nvarchar" Mode="In" />
+          <Parameter Name="status" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="siixsem_laser_mark_cfgModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="siixsem_laser_mark_cfgModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="siixsem_laser_mark_cfgEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="getLMParameters" ReturnType="Collection(siixsem_laser_mark_cfgModel.getLMParameters_Result)">
+          <Parameter Name="lm" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getReleasePath" ReturnType="Collection(siixsem_laser_mark_cfgModel.getReleasePath_Result)" />
+          <FunctionImport Name="getStatus" ReturnType="Collection(siixsem_laser_mark_cfgModel.getStatus_Result)">
+          <Parameter Name="idLM" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="setTaskToLM">
+            <Parameter Name="idlm" Mode="In" Type="Int32" />
+            <Parameter Name="task" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getLaserMark" ReturnType="Collection(siixsem_laser_mark_cfgModel.getLaserMark_Result)">
+            <Parameter Name="idLS" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getLaserMarkByDesc" ReturnType="Collection(siixsem_laser_mark_cfgModel.getLaserMarkByDesc_Result)">
+            <Parameter Name="DESCR" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="getLMParameters_Result">
+          <Property Type="Int32" Name="ID" Nullable="true" />
+          <Property Type="Int32" Name="IDLM" Nullable="true" />
+          <Property Type="String" Name="PROGRAM" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="REVIEW" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ROUTE" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="LASER_PRG" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="BATCHID" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="QTYPANELS" Nullable="true" />
+          <Property Type="Int32" Name="QTYPCBPANEL" Nullable="true" />
+          <Property Type="Int32" Name="HASPANEL" Nullable="true" />
+          <Property Type="Int32" Name="CURRQTYRELEASED" Nullable="true" />
+          <Property Type="Int32" Name="REMQTYRELEASED" Nullable="true" />
+          <Property Type="DateTime" Name="CREATEDDATE" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="LASTUPDATE" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="getReleasePath_Result">
+          <Property Type="String" Name="PATHPROD" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="PATHDEV" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="tgDrive" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="tgPath" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="tgDriveDev" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="tgPathDev" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="getStatus_Result">
+          <Property Type="Int32" Name="se_id" Nullable="false" />
+          <Property Type="Int32" Name="se_id_lm" Nullable="false" />
+          <Property Type="String" Name="se_task" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="se_status" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="se_created_date" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="se_last_update" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="getLaserMark_Result">
+          <Property Type="Int32" Name="se_id" Nullable="false" />
+          <Property Type="String" Name="se_description" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="se_ip" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getLaserMarkByDesc_Result">
+          <Property Type="Int32" Name="se_id" Nullable="false" />
+          <Property Type="String" Name="se_description" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="se_ip" Nullable="false" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="siixsem_laser_mark_cfgModelStoreContainer" CdmEntityContainer="siixsem_laser_mark_cfgEntities" >
+          <FunctionImportMapping FunctionImportName="getLMParameters" FunctionName="siixsem_laser_mark_cfgModel.Store.getLMParameters">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_laser_mark_cfgModel.getLMParameters_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDLM" ColumnName="IDLM" />
+                <ScalarProperty Name="PROGRAM" ColumnName="PROGRAM" />
+                <ScalarProperty Name="REVIEW" ColumnName="REVIEW" />
+                <ScalarProperty Name="ROUTE" ColumnName="ROUTE" />
+                <ScalarProperty Name="LASER_PRG" ColumnName="LASER_PRG" />
+                <ScalarProperty Name="BATCHID" ColumnName="BATCHID" />
+                <ScalarProperty Name="QTYPANELS" ColumnName="QTYPANELS" />
+                <ScalarProperty Name="QTYPCBPANEL" ColumnName="QTYPCBPANEL" />
+                <ScalarProperty Name="HASPANEL" ColumnName="HASPANEL" />
+                <ScalarProperty Name="CURRQTYRELEASED" ColumnName="CURRQTYRELEASED" />
+                <ScalarProperty Name="REMQTYRELEASED" ColumnName="REMQTYRELEASED" />
+                <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+                <ScalarProperty Name="LASTUPDATE" ColumnName="LASTUPDATE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getReleasePath" FunctionName="siixsem_laser_mark_cfgModel.Store.getReleasePath">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_laser_mark_cfgModel.getReleasePath_Result">
+                <ScalarProperty Name="PATHPROD" ColumnName="PATHPROD" />
+                <ScalarProperty Name="PATHDEV" ColumnName="PATHDEV" />
+                <ScalarProperty Name="tgDrive" ColumnName="tgDrive" />
+                <ScalarProperty Name="tgPath" ColumnName="tgPath" />
+                <ScalarProperty Name="tgDriveDev" ColumnName="tgDriveDev" />
+                <ScalarProperty Name="tgPathDev" ColumnName="tgPathDev" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getStatus" FunctionName="siixsem_laser_mark_cfgModel.Store.getStatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_laser_mark_cfgModel.getStatus_Result">
+                <ScalarProperty Name="se_id" ColumnName="se_id" />
+                <ScalarProperty Name="se_id_lm" ColumnName="se_id_lm" />
+                <ScalarProperty Name="se_task" ColumnName="se_task" />
+                <ScalarProperty Name="se_status" ColumnName="se_status" />
+                <ScalarProperty Name="se_created_date" ColumnName="se_created_date" />
+                <ScalarProperty Name="se_last_update" ColumnName="se_last_update" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="setTaskToLM" FunctionName="siixsem_laser_mark_cfgModel.Store.setTaskToLM" />
+          <FunctionImportMapping FunctionImportName="getLaserMark" FunctionName="siixsem_laser_mark_cfgModel.Store.getLaserMark">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_laser_mark_cfgModel.getLaserMark_Result">
+                <ScalarProperty Name="se_id" ColumnName="se_id" />
+                <ScalarProperty Name="se_description" ColumnName="se_description" />
+                <ScalarProperty Name="se_ip" ColumnName="se_ip" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getLaserMarkByDesc" FunctionName="siixsem_laser_mark_cfgModel.Store.getLaserMarkByDesc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_laser_mark_cfgModel.getLaserMarkByDesc_Result">
+                <ScalarProperty Name="se_id" ColumnName="se_id" />
+                <ScalarProperty Name="se_description" ColumnName="se_description" />
+                <ScalarProperty Name="se_ip" ColumnName="se_ip" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

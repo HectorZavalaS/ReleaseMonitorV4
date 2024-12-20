@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="siixsem_sys_lblPrint_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="existDjGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nd" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="existDJGroupOr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="djGroup" Type="nvarchar" Mode="In" />
+          <Parameter Name="pNum" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getIdmodelByDJGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="djGroup" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getLaserDjs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fechaIni" Type="nvarchar" Mode="In" />
+          <Parameter Name="fechaFin" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getQtyByDjGr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="djGr" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getQtyDjGrp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DjGrp" Type="int" Mode="In" />
+          <Parameter Name="DjNo" Type="int" Mode="In" />
+          <Parameter Name="IdModel" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getQtyMitByDJGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dj_group" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="insertSpec3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idModel" Type="int" Mode="In" />
+          <Parameter Name="idFlx" Type="int" Mode="In" />
+          <Parameter Name="idColor" Type="int" Mode="In" />
+          <Parameter Name="idVolt" Type="int" Mode="In" />
+          <Parameter Name="idUser" Type="int" Mode="In" />
+          <Parameter Name="cantTot" Type="int" Mode="In" />
+          <Parameter Name="iniFolio" Type="int" Mode="In" />
+          <Parameter Name="finFolio" Type="int" Mode="In" />
+          <Parameter Name="currFolio" Type="int" Mode="In" />
+          <Parameter Name="djNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="aName" Type="nvarchar" Mode="In" />
+          <Parameter Name="datePlan" Type="date" Mode="In" />
+          <Parameter Name="is_rem" Type="int" Mode="In" />
+          <Parameter Name="djGroup" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="siixsem_sys_lblPrint_dbModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="siixsem_sys_lblPrint_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="siixsem_sys_lblPrint_dbEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="existDJGroupOr" ReturnType="Collection(siixsem_sys_lblPrint_dbModel.existDJGroupOr_Result)">
+            <Parameter Name="djGroup" Mode="In" Type="String" />
+            <Parameter Name="pNum" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="insertSpec3" ReturnType="Collection(siixsem_sys_lblPrint_dbModel.insertSpec3_Result)">
+            <Parameter Name="idModel" Mode="In" Type="Int32" />
+            <Parameter Name="idFlx" Mode="In" Type="Int32" />
+            <Parameter Name="idColor" Mode="In" Type="Int32" />
+            <Parameter Name="idVolt" Mode="In" Type="Int32" />
+            <Parameter Name="idUser" Mode="In" Type="Int32" />
+            <Parameter Name="cantTot" Mode="In" Type="Int32" />
+            <Parameter Name="iniFolio" Mode="In" Type="Int32" />
+            <Parameter Name="finFolio" Mode="In" Type="Int32" />
+            <Parameter Name="currFolio" Mode="In" Type="Int32" />
+            <Parameter Name="djNo" Mode="In" Type="String" />
+            <Parameter Name="aName" Mode="In" Type="String" />
+            <Parameter Name="datePlan" Mode="In" Type="DateTime" />
+            <Parameter Name="is_rem" Mode="In" Type="Int32" />
+            <Parameter Name="djGroup" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="existDjGroup" ReturnType="Collection(siixsem_sys_lblPrint_dbModel.existDjGroup_Result)">
+          <Parameter Name="nd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getLaserDjs" ReturnType="Collection(siixsem_sys_lblPrint_dbModel.getLaserDjs_Result)">
+            <Parameter Name="fechaIni" Mode="In" Type="String" />
+            <Parameter Name="fechaFin" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getIdmodelByDJGroup" ReturnType="Collection(siixsem_sys_lblPrint_dbModel.getIdmodelByDJGroup_Result)">
+          <Parameter Name="djGroup" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getQtyDjGrp">
+            <Parameter Name="DjGrp" Mode="In" Type="Int32" />
+            <Parameter Name="DjNo" Mode="In" Type="Int32" />
+            <Parameter Name="IdModel" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getQtyByDjGr" ReturnType="Collection(siixsem_sys_lblPrint_dbModel.getQtyByDjGr_Result)">
+          <Parameter Name="djGr" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getQtyMitByDJGroup" ReturnType="Collection(siixsem_sys_lblPrint_dbModel.getQtyMitByDJGroup_Result)">
+            <Parameter Name="dj_group" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="existDJGroupOr_Result">
+          <Property Type="Int32" Name="COUNT" Nullable="true" />
+          <Property Type="String" Name="pair_fg_name" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="insertSpec3_Result">
+          <Property Type="Int32" Name="RESULT" Nullable="true" />
+          <Property Type="String" Name="TXTRESULT" Nullable="false" MaxLength="24" />
+        </ComplexType>
+        <ComplexType Name="existDjGroup_Result">
+          <Property Type="Int32" Name="RESULT" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getLaserDjs_Result">
+          <Property Type="Int32" Name="ID_MODEL" Nullable="true" />
+          <Property Type="String" Name="ASSEMBLY_DESC" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="PAIR_FG_NAME" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="CREATED_DT" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="DJ_QTY" Nullable="true" />
+          <Property Type="String" Name="DJ_NO" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ASSEMBLY_NAME" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="DJ_GROUP" Nullable="true" MaxLength="60" />
+          <Property Type="Double" Name="MASTER_PICK_LIST_NO" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getIdmodelByDJGroup_Result">
+          <Property Type="Int32" Name="ID_MODEL" Nullable="false" />
+          <Property Type="String" Name="NO_DJ" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="DJ_GROUP" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="DJ_NO" Nullable="false" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="getQtyByDjGr_Result">
+          <Property Type="Int32" Name="se_dj_qty" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getQtyMitByDJGroup_Result">
+          <Property Type="String" Name="ASSEMBLY_DESC" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="START_QUANTITY" Nullable="true" />
+          <Property Type="String" Name="WIP_ENTITY_NAME" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="ASSEMBLY_NAME" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="LINKAGE_SEQ" Nullable="true" />
+          <Property Type="String" Name="RANK_NAME" Nullable="true" MaxLength="20" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="siixsem_sys_lblPrint_dbModelStoreContainer" CdmEntityContainer="siixsem_sys_lblPrint_dbEntities" >
+          <FunctionImportMapping FunctionImportName="existDJGroupOr" FunctionName="siixsem_sys_lblPrint_dbModel.Store.existDJGroupOr">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_sys_lblPrint_dbModel.existDJGroupOr_Result">
+                <ScalarProperty Name="COUNT" ColumnName="COUNT" />
+                <ScalarProperty Name="pair_fg_name" ColumnName="pair_fg_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="insertSpec3" FunctionName="siixsem_sys_lblPrint_dbModel.Store.insertSpec3">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_sys_lblPrint_dbModel.insertSpec3_Result">
+                <ScalarProperty Name="RESULT" ColumnName="RESULT" />
+                <ScalarProperty Name="TXTRESULT" ColumnName="TXTRESULT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="existDjGroup" FunctionName="siixsem_sys_lblPrint_dbModel.Store.existDjGroup" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_sys_lblPrint_dbModel.existDjGroup_Result">
+                <ScalarProperty Name="RESULT" ColumnName="RESULT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getLaserDjs" FunctionName="siixsem_sys_lblPrint_dbModel.Store.getLaserDjs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_sys_lblPrint_dbModel.getLaserDjs_Result">
+                <ScalarProperty Name="ID_MODEL" ColumnName="ID_MODEL" />
+                <ScalarProperty Name="ASSEMBLY_DESC" ColumnName="ASSEMBLY_DESC" />
+                <ScalarProperty Name="PAIR_FG_NAME" ColumnName="PAIR_FG_NAME" />
+                <ScalarProperty Name="CREATED_DT" ColumnName="CREATED_DT" />
+                <ScalarProperty Name="DJ_QTY" ColumnName="DJ_QTY" />
+                <ScalarProperty Name="DJ_NO" ColumnName="DJ_NO" />
+                <ScalarProperty Name="ASSEMBLY_NAME" ColumnName="ASSEMBLY_NAME" />
+                <ScalarProperty Name="DJ_GROUP" ColumnName="DJ_GROUP" />
+                <ScalarProperty Name="MASTER_PICK_LIST_NO" ColumnName="MASTER_PICK_LIST_NO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getIdmodelByDJGroup" FunctionName="siixsem_sys_lblPrint_dbModel.Store.getIdmodelByDJGroup" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_sys_lblPrint_dbModel.getIdmodelByDJGroup_Result">
+                <ScalarProperty Name="ID_MODEL" ColumnName="ID_MODEL" />
+                <ScalarProperty Name="NO_DJ" ColumnName="NO_DJ" />
+                <ScalarProperty Name="DJ_GROUP" ColumnName="DJ_GROUP" />
+                <ScalarProperty Name="DJ_NO" ColumnName="DJ_NO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getQtyDjGrp" FunctionName="siixsem_sys_lblPrint_dbModel.Store.getQtyDjGrp" />
+          <FunctionImportMapping FunctionImportName="getQtyByDjGr" FunctionName="siixsem_sys_lblPrint_dbModel.Store.getQtyByDjGr" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_sys_lblPrint_dbModel.getQtyByDjGr_Result">
+                <ScalarProperty Name="se_dj_qty" ColumnName="se_dj_qty" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getQtyMitByDJGroup" FunctionName="siixsem_sys_lblPrint_dbModel.Store.getQtyMitByDJGroup">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_sys_lblPrint_dbModel.getQtyMitByDJGroup_Result">
+                <ScalarProperty Name="ASSEMBLY_DESC" ColumnName="ASSEMBLY_DESC" />
+                <ScalarProperty Name="START_QUANTITY" ColumnName="START_QUANTITY" />
+                <ScalarProperty Name="WIP_ENTITY_NAME" ColumnName="WIP_ENTITY_NAME" />
+                <ScalarProperty Name="ASSEMBLY_NAME" ColumnName="ASSEMBLY_NAME" />
+                <ScalarProperty Name="LINKAGE_SEQ" ColumnName="LINKAGE_SEQ" />
+                <ScalarProperty Name="RANK_NAME" ColumnName="RANK_NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

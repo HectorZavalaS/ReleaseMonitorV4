@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="siixsem_laser_traceability_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="siixsem_cgs_route_t">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="se_id_model" Type="int" Nullable="false" />
+          <Property Name="cgs_route" Type="nvarchar" MaxLength="50" />
+          <Property Name="cgs_revision" Type="nvarchar" MaxLength="50" />
+          <Property Name="creation_date" Type="datetime" Nullable="false" />
+          <Property Name="cgs_pn" Type="nvarchar" MaxLength="50" />
+          <Property Name="valid" Type="int" Nullable="false" />
+          <Property Name="pokayoke" Type="nvarchar" MaxLength="350" />
+          <Property Name="pair_fg_name" Type="nvarchar" MaxLength="150" />
+          <Property Name="isMit" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="siixsem_release_info_t">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cgs_route" Type="int" Nullable="false" />
+          <Property Name="dj_no" Type="int" />
+          <Property Name="dj_group" Type="nvarchar" MaxLength="50" />
+          <Property Name="release_qty" Type="int" Nullable="false" />
+          <Property Name="creation_date" Type="datetime" Nullable="false" />
+          <Property Name="modification_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_siixsem_release_info_t_siixsem_cgs_route_t">
+          <End Role="siixsem_cgs_route_t" Type="Self.siixsem_cgs_route_t" Multiplicity="1" />
+          <End Role="siixsem_release_info_t" Type="Self.siixsem_release_info_t" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_cgs_route_t">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="siixsem_release_info_t">
+              <PropertyRef Name="id_cgs_route" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="getCgsDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_model" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="siixsem_laser_traceability_dbModelStoreContainer">
+          <EntitySet Name="siixsem_cgs_route_t" EntityType="Self.siixsem_cgs_route_t" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="siixsem_release_info_t" EntityType="Self.siixsem_release_info_t" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_siixsem_release_info_t_siixsem_cgs_route_t" Association="Self.FK_siixsem_release_info_t_siixsem_cgs_route_t">
+            <End Role="siixsem_cgs_route_t" EntitySet="siixsem_cgs_route_t" />
+            <End Role="siixsem_release_info_t" EntitySet="siixsem_release_info_t" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="siixsem_laser_traceability_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="siixsem_cgs_route_t">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="se_id_model" Type="Int32" Nullable="false" />
+          <Property Name="cgs_route" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cgs_revision" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="creation_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cgs_pn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="valid" Type="Int32" Nullable="false" />
+          <Property Name="pokayoke" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="pair_fg_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="isMit" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="siixsem_release_info_t" Relationship="Self.FK_siixsem_release_info_t_siixsem_cgs_route_t" FromRole="siixsem_cgs_route_t" ToRole="siixsem_release_info_t" />
+        </EntityType>
+        <EntityType Name="siixsem_release_info_t">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cgs_route" Type="Int32" Nullable="false" />
+          <Property Name="dj_no" Type="Int32" />
+          <Property Name="dj_group" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="release_qty" Type="Int32" Nullable="false" />
+          <Property Name="creation_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modification_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="siixsem_cgs_route_t" Relationship="Self.FK_siixsem_release_info_t_siixsem_cgs_route_t" FromRole="siixsem_release_info_t" ToRole="siixsem_cgs_route_t" />
+        </EntityType>
+        <Association Name="FK_siixsem_release_info_t_siixsem_cgs_route_t">
+          <End Role="siixsem_cgs_route_t" Type="Self.siixsem_cgs_route_t" Multiplicity="1" />
+          <End Role="siixsem_release_info_t" Type="Self.siixsem_release_info_t" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siixsem_cgs_route_t">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="siixsem_release_info_t">
+              <PropertyRef Name="id_cgs_route" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="siixsem_laser_traceability_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="siixsem_cgs_route_t" EntityType="Self.siixsem_cgs_route_t" />
+          <EntitySet Name="siixsem_release_info_t" EntityType="Self.siixsem_release_info_t" />
+          <AssociationSet Name="FK_siixsem_release_info_t_siixsem_cgs_route_t" Association="Self.FK_siixsem_release_info_t_siixsem_cgs_route_t">
+            <End Role="siixsem_cgs_route_t" EntitySet="siixsem_cgs_route_t" />
+            <End Role="siixsem_release_info_t" EntitySet="siixsem_release_info_t" />
+          </AssociationSet>
+          <FunctionImport Name="getCgsDetails" ReturnType="Collection(siixsem_laser_traceability_dbModel.getCgsDetails_Result)">
+            <Parameter Name="id_model" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="getCgsDetails_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="cgs_route" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cgs_revision" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cgs_pn" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="pokayoke" Nullable="true" MaxLength="350" />
+          <Property Type="String" Name="pair_fg_name" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="isMit" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="siixsem_laser_traceability_dbModelStoreContainer" CdmEntityContainer="siixsem_laser_traceability_dbEntities">
+          <EntitySetMapping Name="siixsem_cgs_route_t">
+            <EntityTypeMapping TypeName="siixsem_laser_traceability_dbModel.siixsem_cgs_route_t">
+              <MappingFragment StoreEntitySet="siixsem_cgs_route_t">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="se_id_model" ColumnName="se_id_model" />
+                <ScalarProperty Name="cgs_route" ColumnName="cgs_route" />
+                <ScalarProperty Name="cgs_revision" ColumnName="cgs_revision" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="cgs_pn" ColumnName="cgs_pn" />
+                <ScalarProperty Name="valid" ColumnName="valid" />
+                <ScalarProperty Name="pokayoke" ColumnName="pokayoke" />
+                <ScalarProperty Name="pair_fg_name" ColumnName="pair_fg_name" />
+                <ScalarProperty Name="isMit" ColumnName="isMit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="siixsem_release_info_t">
+            <EntityTypeMapping TypeName="siixsem_laser_traceability_dbModel.siixsem_release_info_t">
+              <MappingFragment StoreEntitySet="siixsem_release_info_t">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_cgs_route" ColumnName="id_cgs_route" />
+                <ScalarProperty Name="dj_no" ColumnName="dj_no" />
+                <ScalarProperty Name="dj_group" ColumnName="dj_group" />
+                <ScalarProperty Name="release_qty" ColumnName="release_qty" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="modification_date" ColumnName="modification_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="getCgsDetails" FunctionName="siixsem_laser_traceability_dbModel.Store.getCgsDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_laser_traceability_dbModel.getCgsDetails_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cgs_route" ColumnName="cgs_route" />
+                <ScalarProperty Name="cgs_revision" ColumnName="cgs_revision" />
+                <ScalarProperty Name="cgs_pn" ColumnName="cgs_pn" />
+                <ScalarProperty Name="pokayoke" ColumnName="pokayoke" />
+                <ScalarProperty Name="pair_fg_name" ColumnName="pair_fg_name" />
+                <ScalarProperty Name="isMit" ColumnName="isMit" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

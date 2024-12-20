@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="siixsem_mits_projectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="existSerialC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="serial" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getMaxPanel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getReleasePath" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="InsertDoubleSerials" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="model" Type="nvarchar" Mode="In" />
+          <Parameter Name="C" Type="nvarchar" Mode="In" />
+          <Parameter Name="S" Type="nvarchar" Mode="In" />
+          <Parameter Name="panel" Type="int" Mode="In" />
+          <Parameter Name="image" Type="int" Mode="In" />
+          <Parameter Name="batch" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsertError" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="serial" Type="nvarchar" Mode="In" />
+          <Parameter Name="operation" Type="nvarchar" Mode="In" />
+          <Parameter Name="description" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="mitsPorcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="funct" Type="nvarchar" Mode="In" />
+          <Parameter Name="model" Type="nvarchar" Mode="In" />
+          <Parameter Name="C" Type="nvarchar" Mode="In" />
+          <Parameter Name="panel" Type="int" Mode="In" />
+          <Parameter Name="image" Type="int" Mode="In" />
+          <Parameter Name="batch" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="siixsem_mits_projectModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="siixsem_mits_projectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="siixsem_mits_projectEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="getMaxPanel" ReturnType="Collection(siixsem_mits_projectModel.getMaxPanel_Result)" />
+          <FunctionImport Name="InsertDoubleSerials" ReturnType="Collection(siixsem_mits_projectModel.InsertDoubleSerials_Result)">
+            <Parameter Name="model" Mode="In" Type="String" />
+            <Parameter Name="C" Mode="In" Type="String" />
+            <Parameter Name="S" Mode="In" Type="String" />
+            <Parameter Name="panel" Mode="In" Type="Int32" />
+            <Parameter Name="image" Mode="In" Type="Int32" />
+            <Parameter Name="batch" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertError" ReturnType="Collection(Int32)">
+            <Parameter Name="serial" Mode="In" Type="String" />
+            <Parameter Name="operation" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="mitsPorcedure" ReturnType="Collection(siixsem_mits_projectModel.mitsPorcedure_Result)">
+            <Parameter Name="funct" Mode="In" Type="String" />
+            <Parameter Name="model" Mode="In" Type="String" />
+            <Parameter Name="C" Mode="In" Type="String" />
+            <Parameter Name="panel" Mode="In" Type="Int32" />
+            <Parameter Name="image" Mode="In" Type="Int32" />
+            <Parameter Name="batch" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getReleasePath" ReturnType="Collection(siixsem_mits_projectModel.getReleasePath_Result)" />
+          <FunctionImport Name="existSerialC" ReturnType="Collection(siixsem_mits_projectModel.existSerialC_Result)">
+            <Parameter Name="serial" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="mitsPorcedure_Result">
+          <Property Type="Int32" Name="PanelId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getReleasePath_Result">
+          <Property Type="String" Name="PATHPROD" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="PATHDEV" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="tgDrive" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="tgPath" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="tgDriveDev" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="tgPathDev" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="getMaxPanel_Result">
+          <Property Type="Int32" Name="PanelId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="InsertDoubleSerials_Result">
+          <Property Type="Int32" Name="PanelId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="existSerialC_Result">
+          <Property Type="Int32" Name="RESULT" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="siixsem_mits_projectModelStoreContainer" CdmEntityContainer="siixsem_mits_projectEntities" >
+          <FunctionImportMapping FunctionImportName="getMaxPanel" FunctionName="siixsem_mits_projectModel.Store.getMaxPanel" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_mits_projectModel.getMaxPanel_Result">
+                <ScalarProperty Name="PanelId" ColumnName="PanelId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertDoubleSerials" FunctionName="siixsem_mits_projectModel.Store.InsertDoubleSerials" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_mits_projectModel.InsertDoubleSerials_Result">
+                <ScalarProperty Name="PanelId" ColumnName="PanelId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertError" FunctionName="siixsem_mits_projectModel.Store.InsertError" />
+          <FunctionImportMapping FunctionImportName="mitsPorcedure" FunctionName="siixsem_mits_projectModel.Store.mitsPorcedure" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_mits_projectModel.mitsPorcedure_Result">
+                <ScalarProperty Name="PanelId" ColumnName="PanelId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getReleasePath" FunctionName="siixsem_mits_projectModel.Store.getReleasePath">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_mits_projectModel.getReleasePath_Result">
+                <ScalarProperty Name="PATHPROD" ColumnName="PATHPROD" />
+                <ScalarProperty Name="PATHDEV" ColumnName="PATHDEV" />
+                <ScalarProperty Name="tgDrive" ColumnName="tgDrive" />
+                <ScalarProperty Name="tgPath" ColumnName="tgPath" />
+                <ScalarProperty Name="tgDriveDev" ColumnName="tgDriveDev" />
+                <ScalarProperty Name="tgPathDev" ColumnName="tgPathDev" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="existSerialC" FunctionName="siixsem_mits_projectModel.Store.existSerialC" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="siixsem_mits_projectModel.existSerialC_Result">
+                <ScalarProperty Name="RESULT" ColumnName="RESULT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
